@@ -9,7 +9,7 @@ const readExpeditionMethod = async (req, res)=>{
 // filter data
 const findExpeditionMethod = async (req, res)=>{
     const expedition = await req.context.models.expedition.findByPk(
-        req.params.expeditionId
+        req.params.expeId
     );
     return res.send(expedition);
 }
@@ -17,9 +17,8 @@ const findExpeditionMethod = async (req, res)=>{
 
 // add Data
 const addExpeditionMethod = async (req, res)=>{
-    const { expe_id, expe_name} = req.body.data;
+    const {expe_name} = req.body;
     const expedition = await req.context.models.expedition.create({
-        expe_id: expe_id,
         expe_name: expe_name
     });
     return res.send(expedition);
@@ -27,7 +26,7 @@ const addExpeditionMethod = async (req, res)=>{
 
 
 const editExpeditionMethod = async (req, res)=>{
-    const {expe_name} = req.body.data;
+    const {expe_name} = req.body;
     const expedition = await req.context.models.expedition.update({
         expe_name: expe_name
     },
@@ -35,13 +34,14 @@ const editExpeditionMethod = async (req, res)=>{
         returning: true,
         where: { expe_id: req.params.expeId }
     });
-    return res.send(true);
+    return res.send(expedition);
 }
 
 const deleteExpeditionMethod = async (req, res)=>{
     const expedition = await req.context.models.expedition.destroy({
         where: {expe_id : req.params.expeId}
     });
+    return res.send(true);
 };
 
 export default {
