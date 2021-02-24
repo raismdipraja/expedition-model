@@ -1,6 +1,14 @@
 // view data 
 const readExpeditionRouteMethod = async (req, res)=>{
-    const expeditionRoute = await req.context.models.expeditionRoute.findAll();
+    const expeditionRoute = await req.context.models.expeditionRoute.findAll(
+        {
+            include: [
+                {
+                    model: req.context.models.expedition,
+                }
+            ]    
+        }
+    );
     return res.send(expeditionRoute);
 }
 

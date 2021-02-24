@@ -53,6 +53,11 @@ const expeditionRoute = (sequelize,DataTypes)=>{
           },
         ]
       });
+
+      ExpeditionRoute.associate = models => {
+        ExpeditionRoute.belongsTo(models.expedition,{foreignKey: 'exro_expe_id'});
+      }
+
       return ExpeditionRoute;
 }
 

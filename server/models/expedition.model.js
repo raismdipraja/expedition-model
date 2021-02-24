@@ -34,6 +34,11 @@ const expedition = (sequelize,DataTypes)=>{
           },
         ]
       });
+
+      Expedition.associate = models => {
+        Expedition.hasMany(models.expeditionRoute,{foreignKey: 'exro_expe_id'})
+      }
+
       return Expedition;
 }
 export default expedition;
