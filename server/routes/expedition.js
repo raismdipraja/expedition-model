@@ -1,12 +1,12 @@
 import {Router} from 'express';
-import expeditionCtrl from '../controllers/expedition.controller'
+import IndexController from '../controllers/IndexController'
 
 const router = Router()
 
-router.get('/', expeditionCtrl.readExpeditionMethod);
-router.get('/:expeId', expeditionCtrl.findExpeditionMethod);
-router.post('/', expeditionCtrl.addExpeditionMethod);
-router.delete('/:expeId', expeditionCtrl.deleteExpeditionMethod);
-router.put('/:expeId', expeditionCtrl.editExpeditionMethod);
+router.get('/', IndexController.expedition.readExpeditionMethod);
+router.get('/:expeId', IndexController.expedition.findExpeditionMethod);
+router.post('/', IndexController.expedition.addExpeditionMethod);
+router.delete('/:expeId', IndexController.expedition.deleteExpeditionMethod);
+router.put('/:expeId', IndexController.expedition.editExpeditionMethod);
 
 export default router;

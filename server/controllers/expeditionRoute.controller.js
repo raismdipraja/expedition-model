@@ -9,6 +9,7 @@ const readExpeditionRouteMethod = async (req, res)=>{
             ]    
         }
     );
+    
     return res.send(expeditionRoute);
 }
 
@@ -24,7 +25,7 @@ const findExpeditionRouteMethod = async (req, res)=>{
 
 // add Data
 const addExpeditionRouteMethod = async (req, res)=>{
-    const { exro_from, exro_to, exro_cost, exro_desc, exro_duration,exro_package, exro_expe_id} = req.body;
+    const { exro_from, exro_to, exro_cost, exro_desc, exro_duration,exro_package, exro_expe_id} = req.body.data;
     const expeditionRoute = await req.context.models.expeditionRoute.create({
         exro_from: exro_from,
         exro_to: exro_to,
@@ -40,9 +41,9 @@ const addExpeditionRouteMethod = async (req, res)=>{
 
 
 const editExpeditionRouteMethod = async (req, res)=>{
-    const {exro_from, exro_to, exro_cost, exro_desc, exro_duration,exro_package, exro_expe_id} = req.body;
-    const expedition = await req.context.models.expeditionRoute.update({
-        expe_from: exro_from,
+    const {exro_from, exro_to, exro_cost, exro_desc, exro_duration,exro_package, exro_expe_id} = req.body.data;
+    const expeditionRoute = await req.context.models.expeditionRoute.update({
+        exro_from: exro_from,
         exro_to: exro_to,
         exro_cost:exro_cost,
         exro_desc: exro_desc,
@@ -54,8 +55,10 @@ const editExpeditionRouteMethod = async (req, res)=>{
         returning: true,
         where: { exro_id: req.params.exroId }
     });
-    return res.send("Berhasil diubah");
+    console.log(expeditionRoute)
+    return res.send(expeditionRoute);
 }
+
 
 
 const deleteExpeditionRouteMethod = async (req, res)=>{
@@ -67,10 +70,12 @@ const deleteExpeditionRouteMethod = async (req, res)=>{
 };
 
 
+
+
 export default {
     readExpeditionRouteMethod,
     findExpeditionRouteMethod,
     addExpeditionRouteMethod,
     editExpeditionRouteMethod,
-    deleteExpeditionRouteMethod
+    deleteExpeditionRouteMethod,
 }

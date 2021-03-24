@@ -17,7 +17,7 @@ const findExpeditionMethod = async (req, res)=>{
 
 // add Data
 const addExpeditionMethod = async (req, res)=>{
-    const {expe_name} = req.body;
+    const {expe_name} = req.body.data;
     const expedition = await req.context.models.expedition.create({
         expe_name: expe_name
     });
@@ -26,7 +26,7 @@ const addExpeditionMethod = async (req, res)=>{
 
 
 const editExpeditionMethod = async (req, res)=>{
-    const {expe_name} = req.body;
+    const {expe_name} = req.body.data;
     const expedition = await req.context.models.expedition.update({
         expe_name: expe_name
     },
@@ -41,8 +41,11 @@ const deleteExpeditionMethod = async (req, res)=>{
     const expedition = await req.context.models.expedition.destroy({
         where: {expe_id : req.params.expeId}
     });
+    console.log(expedition)
     return res.send(true);
 };
+
+
 
 export default {
     readExpeditionMethod,

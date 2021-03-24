@@ -7,9 +7,11 @@
 
 import expedition from './expedition';
 import expeditionRoute from './expeditionRoute';
+import apiExpedition from './apiExpeditionRoute';
 
 
 export default {
     expedition,
     expeditionRoute,
+    apiExpedition
 };

@@ -41,6 +41,7 @@ app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 // #2 add this script when you add other route
 app.use('/api/expedition', routes.expedition);
 app.use('/api/expeditionroute', routes.expeditionRoute);
+app.use('/api/v1/cekongkir', routes.apiExpedition);
 
 
 // Catch unauthorised errors
